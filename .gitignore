@@ -1,0 +1,7 @@
+**/bin/Debug
+/**/obj/Debug
+/
+*.suo
+*.user
+/packages/
+/ProjectToProcess/Generated
