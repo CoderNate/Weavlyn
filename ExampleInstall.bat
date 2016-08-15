@@ -1,0 +1,2 @@
+::This is an example of using the install operation of the Weavlyn powershell script.
+powershell -ExecutionPolicy bypass -file Weavlyn.ps1 -OPERATION install -ProjectFile .\ProjectToProcess\ProjectToProcess.csproj -RewriterName "ConsoleLoggingRewriter.csx"

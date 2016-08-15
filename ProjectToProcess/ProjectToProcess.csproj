@@ -47,10 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <RewriterExecutablePath>$(ProjectDir)\..\ExampleRewriter\bin\Debug\ExampleRewriter.exe</RewriterExecutablePath>
-  </PropertyGroup>
-  <Import Project="$(ProjectDir)\..\lib\Weavlyn.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.-->
   <!--<Target Name="BeforeBuild">

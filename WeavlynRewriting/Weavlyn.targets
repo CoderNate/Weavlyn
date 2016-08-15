@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Target Name="SourceGeneration" BeforeTargets="BeforeBuild">
-    <Error Condition="$(RewriterExecutablePath)==''" Text="RewriterExecutablePath property must be specified in csproj file." />
-    <Error Condition="!Exists($(RewriterExecutablePath))" Text="$([System.String]::Format('Specified RewriterExecutablePath {0} does not exist.', '$(RewriterExecutablePath)'))" />
+    <Error Condition="$(RewriterName)==''" Text="RewriterName property must be specified in csproj file." />
+    <!--<Error Condition="!Exists($(RewriterExecutablePath))" Text="$([System.String]::Format('Specified RewriterExecutablePath {0} does not exist.', '$(RewriterExecutablePath)'))" />-->
     <PropertyGroup Condition="'$(GeneratedDirName)'==''">
       <GeneratedDirName>Generated</GeneratedDirName>
     </PropertyGroup>
-    <Exec Command="$(RewriterExecutablePath) $(ProjectDir) $(GeneratedDirName)" />
+    <Exec Command="powershell -executionpolicy bypass -File $(ProjectDir)\..\Weavlyn.ps1 -operation run -ProjectFile $(ProjectPath) -RewriterName $(RewriterName) -GeneratedDirName $(GeneratedDirName)" />
+    <!--<Exec Command="$(RewriterExecutablePath) $(ProjectDir) $(GeneratedDirName)" />-->
     <ItemGroup>
       <!-- If a corresponding generated file exists, include it and remove the original that it is replacing. -->
       <Compile Condition="Exists('$(GeneratedDirName)\%(Compile.Identity)')" Include="$(GeneratedDirName)\%(Compile.Identity)" />
@@ -14,7 +15,7 @@
     </ItemGroup>
 	
     <!--For debugging the final Compile list: -->
-	<!--<Message Text="@(Compile)" Importance="high" />-->
+    <!--<Message Text="@(Compile)" Importance="high" />-->
 	
   </Target>
 

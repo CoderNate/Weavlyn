@@ -37,4 +37,8 @@ Importing a pretty simple targets file in your csproj takes care of calling the 
 By storing a hash of the source file in a comment at the top of the generated file, you can speed up compilation by avoiding the cost of re-generating code for source files with unchanged hashes at every build.
 
 ## Installing Weavlyn
-It would be really cool if you could just install a Weavlyn NuGet package like you can with [Fody](https://github.com/Fody/Fody).  But one would need to pick a version of Microsoft.CodeAnalysis.* (8+ MB of Roslyn DLLs) to live side-by-side with Weavlyn.dll in the NuGet package and that just doesn't feel right.  So for now the only useful stuff in this repository is the Weavlyn.targets file and RewriterBase.cs. 
+From the root of your solution, run the following in Powershell:
+```powershell
+Invoke-WebRequest "https://raw.githubusercontent.com/CoderNate/Weavlyn/master/Weavlyn.ps1" -OutFile Weavlyn.ps1
+& .\Weavlyn.ps1 -OPERATION install -ProjectFile .\ProjectToProcess\ProjectToProcess.csproj -RewriterName "ExampleRewriter.csx"
+```
