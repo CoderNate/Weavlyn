@@ -74,7 +74,7 @@ function MD5HashFile([string] $filePath)
 function EnsureDownloaded([string]$sourceURL, [string]$destPath) {
 	if (!(Test-Path $destPath)) {
 		$fileName = Split-Path $destPath -Leaf
-		Write-Verbose -Message "Downloading " + $fileName + "..."
+		Write-Verbose -Message ("Downloading " + $fileName + "...")
 		try {
 			(New-Object System.Net.WebClient).DownloadFile($sourceURL, $destPath)
 		} catch {
@@ -237,7 +237,7 @@ new Rewriter().ProcessProjectFiles(projectDir, generatedSubfolderName);
 	$settings.IndentChars = "  "
 	$writer = [System.Xml.XmlTextWriter]::Create($ProjectFile, $settings)
 	$xDoc.Save($writer)
-	$writer.Dispose()
+	$writer.Close()
 	
 	exit $LASTEXITCODE
 }
